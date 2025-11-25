@@ -5,7 +5,6 @@ while not frase.endswith("."):
     frase = input("LA FRASE DEBE TERMINAR CON UN PUNTO. Ingrese la frase con un punto al final: ")
 
 lista_frase = []
-lista_repetida = []
 palabra = ""
 diccionario_palabras = {}
 
@@ -16,6 +15,7 @@ for letra in frase.lower():
         lista_frase.append(palabra)
         palabra = ""
 
+#Aqui use un for para almacenar cuantas veces se repite la palabra en la frase y guardarlo en un diccionario
 for palabra_repetida in lista_frase:
     veces = lista_frase.count(palabra_repetida)
     diccionario_palabras[palabra_repetida] = veces

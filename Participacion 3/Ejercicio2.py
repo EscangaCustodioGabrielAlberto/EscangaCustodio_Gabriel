@@ -11,12 +11,12 @@ while True:
     else:
         break
 
-print(f"En la lista de pares hay {len(lista_par)}")
+print(f"En la lista de pares hay {len(lista_par)} elementos")
 lista_par.sort()
 for numPar in lista_par:
     print(numPar)
 
-print(f"En la lista de impares hay {len(lista_impar)}")
+print(f"En la lista de impares hay {len(lista_impar)} elementos")
 lista_impar.sort()
 for numImpar in lista_impar:
     print(numImpar)
