@@ -40,8 +40,15 @@ def orden_promedio(lista_estudiantes):
 def agregar_estudiante(lista_estudiantes):
     nombre = input("Ingrese el nombre del estudiante: ")
     apellido = input("Ingrese el apellido del estudiante: ")
-    promedio = float(input("Ingrese el promedio del estudiante: "))
-    
+
+    try:
+        promedio = float(input("Ingrese el promedio del estudiante: "))
+    except:
+        print("Promedio invalido. Ingrese un valor numerico.")
+        return
+    finally:
+        ("Proceso terminado.") #El finally siempre se ejecuta, en este codigo no se ejecuta si hay un error potque hay un 'return'
+
     lista_estudiantes.append({"nombre": nombre, "apellido": apellido, "promedio": promedio})
     
     print(f"Estudiante {nombre} {apellido} agregado exitosamente.")
