@@ -134,6 +134,10 @@ def editar_producto(lista_productos):
             valor_a_editar = input("Que valor deseas editar?: ")
             if (valor_a_editar.lower() == "nombre"):
                 nuevo_nombre = input("Ingresa el nuevo nombre del producto: ")
+                for producto in lista_productos:
+                    if producto['nombre'].lower() == nuevo_nombre.lower():
+                        print("Este nombre ya esta siendo utilizado por otro producto")
+                        return
                 producto["nombre"] = nuevo_nombre
                 print("Nombre editado correctamente")
                 with open("productos.json", "w", encoding="utf-8") as archivo:
