@@ -19,7 +19,7 @@ def cargar_archivo():
             return json.load(archivo)
     except FileNotFoundError:
         print("Aun no hay productos en esta lista.")
-        return 
+        return []
 
 # Función para agregar un producto
 def agregar_producto(lista_productos):
@@ -28,9 +28,26 @@ def agregar_producto(lista_productos):
         if producto['nombre'].lower() == nombre.lower():
             print("Producto ya registrado")
             return
+        
     id = input("Ingrese el ID del producto: ")
-    precio = float(input("Ingrese el precio del producto: "))
-    cantidad = int(input("Ingrese la cantidad disponible del producto: "))
+    for producto in lista_productos:
+        if producto['ID'].lower() == id.lower():
+            print("Este ID ya esta en Existe.")
+            return
+        
+    while True:
+        try:
+            precio = float(input("Ingrese el precio del producto: "))
+            break
+        except ValueError:
+            print("Necesitas ingresar un valor numerico. Intente de nuevo.")
+    
+    while True:
+        try:
+            cantidad = int(input("Ingrese la cantidad disponible del producto: "))
+            break
+        except ValueError:
+            print("Necesitas ingresar un valor numerico entero. Intente de nuevo.")
     categoria = input("Ingrese la categoria del producto: ")
 
     lista_productos.append({"nombre": nombre, "ID": id, "precio": precio, "cantidad": cantidad, "categoria": categoria})
@@ -38,7 +55,7 @@ def agregar_producto(lista_productos):
     print(f"El producto '{nombre}' con ID:{id} fue agregado exitosamente.")
 
     #Para que se guarde en un archivo .json
-    with open("productos.json", "w", encoding="utf-8") as archivo:
+    with open("productos.json", "a", encoding="utf-8") as archivo:
         json.dump(lista_productos, archivo, ensure_ascii=False)
 
 # Función para mostrar lista de productos
@@ -77,7 +94,7 @@ def buscar_producto_id(lista_productos):
         if producto['ID'].lower() == id_buscar.lower():
             print(f"Producto encontrado: {producto['nombre']} - ID:{producto['ID']} - Precio: {producto['precio']} - Cantidad disponible:{producto['cantidad']} - Categoria:{producto['categoria']}")
             return
-    print("Estudiante no encontrado.")
+    print("Producto no encontrado.")
     
 # Función para eliminar productos
 def eliminar_producto(lista_productos):
@@ -100,7 +117,7 @@ def eliminar_producto(lista_productos):
             lista_productos.remove(producto)
             print(f"Producto '{producto['nombre']}' con ID:{producto['ID']} Eliminado exitosamente")
             #Para que se guarde en un archivo .json
-            with open("productos.json", "w", encoding="utf-8") as archivo:
+            with open("productos.json", "a", encoding="utf-8") as archivo:
                 json.dump(lista_productos, archivo, ensure_ascii=False)
             return
     print("preoducto no encontrado.")
@@ -134,38 +151,34 @@ def editar_producto(lista_productos):
             valor_a_editar = input("Que valor deseas editar?: ")
             if (valor_a_editar.lower() == "nombre"):
                 nuevo_nombre = input("Ingresa el nuevo nombre del producto: ")
-                for producto in lista_productos:
-                    if producto['nombre'].lower() == nuevo_nombre.lower():
-                        print("Este nombre ya esta siendo utilizado por otro producto")
-                        return
                 producto["nombre"] = nuevo_nombre
                 print("Nombre editado correctamente")
-                with open("productos.json", "w", encoding="utf-8") as archivo:
+                with open("productos.json", "a", encoding="utf-8") as archivo:
                     json.dump(lista_productos, archivo, ensure_ascii=False)
             elif (valor_a_editar.lower() == "ID"):
                 nuevo_id = input("Ingresa el nuevo ID del producto: ")
                 producto["ID"] = nuevo_id
                 print("ID editado correctamente")
-                with open("productos.json", "w", encoding="utf-8") as archivo:
+                with open("productos.json", "a", encoding="utf-8") as archivo:
                     json.dump(lista_productos, archivo, ensure_ascii=False)
             elif (valor_a_editar.lower() == "precio"):
                 nuevo_precio = input("Ingresa el nuevo precio del producto: ")
                 producto["precio"] = nuevo_precio
                 print("Precio editado correctamente")
-                with open("productos.json", "w", encoding="utf-8") as archivo:
+                with open("productos.json", "a", encoding="utf-8") as archivo:
                     json.dump(lista_productos, archivo, ensure_ascii=False)
             elif (valor_a_editar.lower() == "cantidad"):
                 nueva_cantidad = input("Ingresa la cantidad actual disponible del producto: ")
                 producto["cantidad"] = nueva_cantidad
                 print("Cantidad editada correctamente")
-                with open("productos.json", "w", encoding="utf-8") as archivo:
+                with open("productos.json", "a", encoding="utf-8") as archivo:
                     json.dump(lista_productos, archivo, ensure_ascii=False)
             elif (valor_a_editar.lower() == "categoria"):
                 nueva_categoria = input("Ingresa la nueva categoria del producto: ")
                 producto["categoria"] = nueva_categoria
                 print("Categoria editada correctamente")
                 #Para que se guarde en un archivo .json
-                with open("productos.json", "w", encoding="utf-8") as archivo:
+                with open("productos.json", "a", encoding="utf-8") as archivo:
                     json.dump(lista_productos, archivo, ensure_ascii=False)
             else:
                 print("Valor para editar no disponible.")
