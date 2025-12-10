@@ -1,0 +1,23 @@
+[
+    {
+        "nombre": "galletas",
+        "ID": "398",
+        "precio": 19.0,
+        "cantidad": 38,
+        "categoria": "higiene"
+    },
+    {
+        "nombre": "papel higienico",
+        "ID": "187",
+        "precio": 9.0,
+        "cantidad": 34,
+        "categoria": "comestible"
+    },
+    {
+        "nombre": "sabritas",
+        "ID": "12389",
+        "precio": 19.0,
+        "cantidad": 23,
+        "categoria": "comestible"
+    }
+]
